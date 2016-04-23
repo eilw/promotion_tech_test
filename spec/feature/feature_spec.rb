@@ -4,13 +4,13 @@ require 'item'
 
 
 describe 'checkout system feature' do
-  let(:double_promotion){PromotionRule.new({type: "product", quantity: 2, id: "001", discount_pp: 0.75})}
-  let(:total_promotion){PromotionRule.new({type: "total", discount_total: 0.1})}
-  let(:promotion_rules){[double_promotion,total_promotion]}
-  let(:co){Checkout.new(promotion_rules)}
-  let(:lavender_heart){Item.new("001", 9.25)}
-  let(:cufflinks){Item.new("002", 45.00)}
-  let(:kids_tshirt){Item.new("003", 19.95)}
+  let(:quantity_promotion){ PromotionRule.new({type: "product", quantity: 2, id: "001", discount_pp: 0.75}) }
+  let(:total_promotion){ PromotionRule.new({type: "total",threshold: 60, discount_pct: 0.1}) }
+  let(:promotion_rules){ [quantity_promotion,total_promotion] }
+  let(:co){ Checkout.new(promotion_rules) }
+  let(:lavender_heart){ Item.new("001", 9.25) }
+  let(:cufflinks){ Item.new("002", 45.00) }
+  let(:kids_tshirt){ Item.new("003", 19.95) }
 
   describe 'sample data' do
     it 'discount for total value' do
