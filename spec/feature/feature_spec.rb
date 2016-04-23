@@ -4,7 +4,7 @@ require 'item'
 
 
 describe 'checkout system feature' do
-  let(:double_promotion){PromotionRule.new({type: "product", quantity: 2, product_id: "001", discount_pp: 0.75})}
+  let(:double_promotion){PromotionRule.new({type: "product", quantity: 2, id: "001", discount_pp: 0.75})}
   let(:total_promotion){PromotionRule.new({type: "total", discount_total: 0.1})}
   let(:promotion_rules){[double_promotion,total_promotion]}
   let(:co){Checkout.new(promotion_rules)}

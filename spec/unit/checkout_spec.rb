@@ -1,9 +1,9 @@
 require 'checkout'
 
 describe Checkout do
-  let(:lavender_heart){double('item', price: 10.00)}
-  let(:cufflinks){double('item', price: 20.50)}
-  let(:total_promotion){double('promotion', calculate_discount: 0)}
+  let(:lavender_heart){double('item', price: 10.00, id: "001")}
+  let(:cufflinks){double('item', price: 20.50,id: "002")}
+  let(:total_promotion){double('promotion_rule', calculate_discount: 0)}
   let(:promotion_rules){[total_promotion]}
   subject(:co){described_class.new(promotion_rules)}
 
@@ -21,7 +21,7 @@ describe Checkout do
       expect(co.total).to eq("£30.50")
     end
 
-    it 'applies a total discount' do
+    it 'applies a discount' do
       allow(total_promotion).to receive(:calculate_discount){6.15}
       3.times{co.scan(cufflinks)}
       expect(co.total).to eq("£55.35")

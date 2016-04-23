@@ -14,19 +14,17 @@ class Checkout
 
   def total
     full_price = @basket.reduce(0){|sum, item| sum + item.price}
-    discount = calculate_discounts(full_price)
+    discount = calculate_discount(full_price)
     present(full_price - discount)
   end
 
   private
 
-  def calculate_discounts(full_price)
-    discount = 0
-    @promotion_rules.each do |promotion|
-      discount += promotion.calculate_discount('total', full_price)
+  def calculate_discount(full_price)
+    products = @basket.map{|item| item.id}
+    @promotion_rules.reduce(0) do |sum, promotion|
+      promotion.calculate_discount(products,full_price)
     end
-    discount
-
   end
 
   def present(price)
