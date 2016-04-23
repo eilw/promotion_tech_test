@@ -13,22 +13,27 @@ class Checkout
   end
 
   def total
-    full_price = @basket.reduce(0){|sum, item| sum + item.price}
+    full_price = basket.reduce(0){|sum, item| sum + item.price}
     discount = calculate_discount(full_price)
     present(full_price - discount)
   end
 
   private
 
+  attr_reader :promotion_rules
+
+  def get_products
+    basket.map{|item| item.id}
+  end
+
   def calculate_discount(full_price)
-    products = @basket.map{|item| item.id}
-    @promotion_rules.reduce(0) do |sum, promotion|
-      promotion.calculate_discount(products,full_price)
+    promotion_rules.reduce(0) do |sum, promotion|
+      sum + promotion.calculate_discount(get_products,full_price-sum)
     end
   end
 
   def present(price)
-    "£#{sprintf('%.2f', price)}"
+    "£#{sprintf('%.2f', price.round(2))}"
   end
 
 end

@@ -2,7 +2,7 @@ require 'checkout'
 
 describe Checkout do
   let(:lavender_heart){double('item', price: 10.00, id: "001")}
-  let(:cufflinks){double('item', price: 20.50,id: "002")}
+  let(:cufflinks){double('item', price: 20.50, id: "002")}
   let(:total_promotion){double('promotion_rule', calculate_discount: 0)}
   let(:promotion_rules){[total_promotion]}
   subject(:co){described_class.new(promotion_rules)}

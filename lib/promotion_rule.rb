@@ -4,9 +4,8 @@ class PromotionRule
   end
 
   def calculate_discount(ids, full_price)
-    discount = calculate_total_discount(full_price) if type_total?
-    discount = calculate_product_discount(ids) if type_product?
-    discount
+    return calculate_total_discount(full_price) if type_total?
+    return calculate_product_discount(ids) if type_product?
   end
 
   private
