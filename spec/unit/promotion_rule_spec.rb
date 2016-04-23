@@ -1,7 +1,7 @@
 require 'promotion_rule'
 
 describe PromotionRule do
-  let(:quantity_promotion){ described_class.new({type: "product", quantity: 2, id: "001", discount_pp: 0.75}) }
+  let(:quantity_promotion){ described_class.new({type: "product", threshold: 2, id: "001", discount_pp: 0.75}) }
   let(:total_promotion){ described_class.new({type: "total",threshold: 60, discount_pct: 0.1}) }
 
   describe '#calculate_discount' do
