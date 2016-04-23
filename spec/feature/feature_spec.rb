@@ -13,12 +13,12 @@ describe 'checkout system feature' do
   let(:kids_tshirt){Item.new("003", 19.95)}
 
   describe 'sample data' do
-    it 'no discount is given' do
+    it 'discount for total value' do
       co.scan(lavender_heart)
       co.scan(cufflinks)
       co.scan(kids_tshirt)
       price = co.total
-      expect(price).to eq(66.78)
+      expect(price).to eq("£66.78")
     end
 
     it 'gives discount for two products' do
@@ -26,7 +26,7 @@ describe 'checkout system feature' do
       co.scan(kids_tshirt)
       co.scan(lavender_heart)
       price = co.total
-      expect(price).to eq(36.95)
+      expect(price).to eq("£36.95")
     end
 
     it 'gives discount for two products and total value' do
@@ -35,7 +35,7 @@ describe 'checkout system feature' do
       co.scan(lavender_heart)
       co.scan(kids_tshirt)
       price = co.total
-      expect(price).to eq(73.76)
+      expect(price).to eq("£73.76")
     end
   end
 
