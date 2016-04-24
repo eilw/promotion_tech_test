@@ -1,3 +1,4 @@
+[![Code Climate](https://codeclimate.com/github/eilw/promotion_tech_test/badges/gpa.svg)](https://codeclimate.com/github/eilw/promotion_tech_test)
 # Promotion and checkout tech test
 
 A tech test to model the a checkout function and promotion rules, in Ruby.
