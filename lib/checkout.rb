@@ -27,8 +27,8 @@ class Checkout
   end
 
   def calculate_discount(full_price)
-    promotion_rules.reduce(0) do |sum, promotion|
-      sum + promotion.calculate_discount(get_products,full_price-sum)
+    promotion_rules.reduce(0) do |discount, promotion|
+      discount + promotion.calculate_discount(get_products,full_price-discount)
     end
   end
 
