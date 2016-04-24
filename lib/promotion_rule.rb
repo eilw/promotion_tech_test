@@ -17,7 +17,7 @@ class PromotionRule
   end
 
   def calculate_product_discount(ids)
-    quantity = ids.select{|id| id == rule[:id]}.length
+    quantity = ids.count{|id| id == rule[:id]}
     quantity >= rule[:threshold] ? rule[:discount_pp] * quantity : 0
   end
 
